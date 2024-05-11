@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" id="navbar">
+    <div class="container-fluid mx-lg-2 ">
+        <!-- Logo y Nombre de la Tienda -->
+        <a href="{% url 'core:index' %}" class="navbar-brand text-dark fw-bold fs-3">
+            <!-- <img src="../assets/favicon/favicon.ico" alt="Logo de Gamers Guild" class="img-fluid logo"> -->
+            Gamers Guild
+        </a>
+
+        <!-- Botón de Navegación -->
+        <button 
+            class="navbar-toggler ms-auto" 
+            type="button" 
+            data-bs-toggle="offcanvas" 
+            data-bs-target="#menuLateral"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Contenido del Navbar -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="menuLateral">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Gamers Guild</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- Links de Inicio y Juegos -->
+                <ul class="navbar-nav mx-auto mb-lg-3 mt-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:index' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'juegos:lista_juegos' %}">Juegos</a>
+                    </li>
+                </ul>
+                
+                <!-- Rutas de Iniciar Sesión y Crear Cuenta -->
+                <ul class="navbar-nav mt-lg-2 mt-lg-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Iniciar Sesión</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link button-register" href="#">
+                            <i class="bi-plus-circle"></i>
+                            Crear Cuenta
+                        </a> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+

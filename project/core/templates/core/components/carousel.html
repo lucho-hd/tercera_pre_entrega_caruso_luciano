@@ -1,0 +1,76 @@
+{% load static %}
+<!-- TODO: Optimizar el código del carousel -->
+<section id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li  
+            data-bs-target="#carousel" 
+            data-bs-slide-to="0" 
+            class="active"
+            aria-current="true" 
+            aria-label="Slide 1"
+        >
+        </li>
+        <li  
+            data-bs-target="#carousel" 
+            data-bs-slide-to="1" 
+            aria-label="Slide 2"
+        >
+        </li>
+        <li  
+            data-bs-target="#carousel" 
+            data-bs-slide-to="2" 
+            aria-label="Slide 3"
+        >
+        </li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+            <div class="position-relative">
+                <img src="{% static 'core/img/hero_image_desktop.webp' %}" class="d-block w-100" alt="">
+                <div class="carousel-caption">
+                    <h2>Senua´s Saga: Hellblade II</h2>
+                    <p>Senua vuelve en una brutal saga de supervivencia</p>
+                    <a href="#" class="carousel-button">Reservar</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <div class="position-relative">
+                <img src="{% static 'core/img/jedi_survivor_desktop.webp' %}" class="d-block w-100" alt="">
+                <div class="carousel-caption">
+                    <h2>STAR WARS Jedi: Survivor</h2>
+                    <p>Enfréntate a la oscuridad</p>
+                    <a href="#" class="carousel-button">Consíguelo ahora</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <div class="position-relative">
+                <img src="{% static 'core/img/star_wars_outlaws_desktop.webp' %}" class="d-block w-100" alt="">
+                <div class="carousel-caption">
+                    <h2>Star Wars Outlaws</h2>
+                    <p>La galaxia está repleta de oportunidades</p>
+                    <a href="#" class="carousel-button">Reservar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button 
+        class="carousel-control-prev text-end" 
+        type="button" 
+        data-bs-target="#carousel" 
+        data-bs-slide="prev"
+    >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button 
+        class="carousel-control-next text-end" 
+        type="button" 
+        data-bs-target="#carousel" 
+        data-bs-slide="next"
+    >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</section>

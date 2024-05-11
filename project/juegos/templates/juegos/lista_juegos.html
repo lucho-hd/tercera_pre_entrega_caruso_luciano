@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Gamers Guild | Juegos
+{% endblock title %}
+
+{% block content %}
+    {% include 'core/components/featured-games.html' with juegos=juegos %}
+{% endblock content %}
