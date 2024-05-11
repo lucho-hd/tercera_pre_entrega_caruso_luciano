@@ -187,7 +187,53 @@ a {
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
   }
 
+  /*!---------------------------------- Detalle de un juego -------------------------------------------*/
+  .img-detalle {
+    width: 25%;
+    height: auto;
+    margin: auto 10px ;
+  }
 
+  .btn-comprar {
+    background: #008746;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+
+  .btn-comprar:hover {
+    background: #007738;
+  }
+
+  .btn-agregar-carrito {
+    background: #484E58;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+  }
+
+  .btn-agregar-carrito:hover {
+    background: #6b7584;
+  }
+
+  .badge-juegos {
+    background: #484E58;
+    border-radius: 1rem;
+    color: #fff;
+    font-weight: 500;
+    padding: .3rem .875rem;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
 
   /*!---------------------------------- Banner inferior -------------------------------------------*/
 

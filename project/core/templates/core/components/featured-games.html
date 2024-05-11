@@ -4,7 +4,7 @@
         <div class="row justify-content-center align-items-center">
             {% for juego in juegos %}
                 <article class="col-xxl-2 col-xl-3 col-md-4 col-sm-5 col-12 my-4">
-                    <a href="#" class="text-dark">
+                    <a href="{% url 'juegos:detalle_juego' juego.id %}" class="text-dark">
                         <div class="card d-flex flex-sm-column flex-row zoom-card">
                             <div class="d-flex card-img">
                                 <img src="{{ juego.imagen.url }}" alt="{{ juego.titulo }}" class="card-img-top zoom-img">

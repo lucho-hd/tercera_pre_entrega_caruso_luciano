@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Gamers Guild | {{juego.titulo}}
+{% endblock title %}
+
+{% block content %}
+    <section class="container-fluid my-5">
+        <article class="my-4">
+            <div class="d-flex">
+                <div class="d-flex mb-3">
+                    <img src="{{ juego.imagen.url }}" alt="{{ juego.titulo }}" class="img-fluid img-detalle rounded">
+                    <div class="flex-column ms-3">
+                        <h2>{{ juego.titulo }}</h2>
+                        <!-- TODO: Agregar empresa y género -->
+                        <span>Companía</span>
+                        <span class="ms-4">Géneros</span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row">
+                <button 
+                    type="button" 
+                    class="btn-comprar"
+                >
+                    Comprar ${{ juego.precio }}
+                </button>
+                <button 
+                    type="button" 
+                    class="btn-agregar-carrito"
+                >
+                <i class="bi-cart-fill"></i> Agregar al carrito
+                </button>
+            </div>
+        </article>
+
+        <div class="row ms-2">
+            <div class="col-md-6 col-12">
+                <p>
+                    <h3 class="fs-4 fw-semibold my-4">Descripción</h3>
+                    {{ juego.descripcion|linebreaksbr }}  
+                </p>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="mt-4">
+                    <h3 class="fs-4 fw-semibold mb-4">Se puede jugar en</h3>
+                    <!-- TODO: Agregar la tabla de Plataformas a la BD -->
+                    <span class="badge-juegos"><i class="bi-playstation"></i> PS4</span>
+                    <span class="badge-juegos"><i class="bi-playstation"></i> PS5</span>
+                </div>
+                <div class="mt-5">
+                    <h3 class="fs-4 mb-4">Funcionalidades</h3>
+                    <span class="badge-juegos">Acá irían las etiquetas de Single player, etc...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
