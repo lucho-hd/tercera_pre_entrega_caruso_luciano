@@ -1,25 +1,46 @@
 <section class="my-4 mx-3">
     <div class="container-fluid">
-        <h2 class="border-bottom pb-3 fw-semibold">Juegos destacados</h2>
-        <div class="row justify-content-center align-items-center">
-            {% for juego in juegos %}
-                <article class="col-xxl-2 col-xl-3 col-md-4 col-sm-5 col-12 my-4">
-                    <a href="{% url 'juegos:detalle_juego' juego.id %}" class="text-dark">
-                        <div class="card d-flex flex-sm-column flex-row zoom-card">
-                            <div class="d-flex card-img">
-                                <img src="{{ juego.imagen.url }}" alt="{{ juego.titulo }}" class="card-img-top zoom-img">
-                            </div>
-                            <div class="card-body">
-                                <h3>{{ juego.titulo }}</h3>                            
-                                <div class="d-flex flex-column">
-                                    <span class="fw-semibold">Precio final</span>
-                                    <span class="fw-semibold">${{ juego.precio }}</span>
+        <div class="d-flex justify-content-between align-items-center border-bottom pb-3">
+            <h2 class="fw-semibold">Juegos destacados</h2>
+            <form 
+                action="{% url 'juegos:lista_juegos' %}"
+                method="GET"
+                class="w-25"
+            >
+                <input 
+                    type="search"
+                    title="Buscar"
+                    name="busqueda"
+                    class="form-control"
+                    placeholder="Buscar..."
+                    id="busqueda"
+                >
+            </form>
+        </div>
+        {% if mensaje %}
+            <p class="fw-semibold fs-5 my-3">{{ mensaje }}</p>
+        {% else %}
+            <div class="row justify-sm-content-center align-items-center">
+                {% for juego in juegos %}
+                    <article class="col-xxl-2 col-xl-3 col-md-4 col-sm-5 col-12 my-4">
+                        <a href="{% url 'juegos:detalle_juego' juego.id %}" class="text-dark">
+                            <div class="card d-flex flex-sm-column flex-row zoom-card">
+                                <div class="d-flex card-img">
+                                    <img src="{{ juego.imagen.url }}" alt="{{ juego.titulo }}" class="card-img-top zoom-img">
+                                </div>
+                                <div class="card-body">
+                                    <h3>{{ juego.titulo }}</h3>                            
+                                    <div class="d-flex flex-column">
+                                        <span class="fw-semibold">Precio final</span>
+                                        <span class="fw-semibold">${{ juego.precio }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </article>
-            {% endfor %}
-        </div>
+                        </a>
+                    </article>
+                {% endfor %}
+            </div>
     </div>
+        {% endif %}
+       
 </section>
