@@ -194,6 +194,13 @@ a {
     margin: auto 10px ;
   }
 
+  .badges-caracteristicas i {
+    padding: 3px 6px;
+    background: #484E58;
+    border-radius: 10px;
+    color: #fff;
+  }
+
   .btn-comprar {
     background: #008746;
     color: #fff;
