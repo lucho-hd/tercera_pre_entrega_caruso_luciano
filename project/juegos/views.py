@@ -24,3 +24,18 @@ def detalle_juego(req, id: int):
     query   = Juego.objects.get(id=id)
     context = {"juego":query} 
     return render(req, "juegos/detalle_juego.html", context)
+
+def crear_juego(req):
+    if req.method == "POST": # POST
+        form = JuegosForm(req.POST, req.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("juegos:lista_juegos")
+    else: # GET
+        form = JuegosForm()
+
+    return render(req, "juegos/crear_juego.html", {"form": form})
+
+def editar_juego(req, id: int):
+    """ Permite editar los datos de un juego mediante su ID """
+    

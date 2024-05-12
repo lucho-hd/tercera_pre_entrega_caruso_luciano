@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Gamers Guild | Crear nuevo juego
+{% endblock title %}
+
+
+{% block content %}
+    <section class="container-fluid align-items-center my-4">
+        <form 
+            action="#"
+            method="post"
+            class="border p-4 w-75 rounded"
+            enctype="multipart/form-data"
+        >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid">
+            <button 
+                type="submit"
+                class="btn-banner border-0 p-1"
+            >
+                Crear juego
+            </button>
+        </div>
+    </form>
+</section>
+{% endblock content %}
