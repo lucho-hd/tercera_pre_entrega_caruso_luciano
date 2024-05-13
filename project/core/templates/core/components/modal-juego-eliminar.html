@@ -1,0 +1,23 @@
+<div class="modal fade" id="modal-juego-eliminar-{{ juego.id }}" aria-hidden="true" aria-labelledby="delete-modal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-4 text-dark" id="delete-modal ">¿Estás seguro de que quieres eliminar {{ juego.titulo }}?</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-danger d-flex justify-content-center align-items-center" role="alert">
+        <p class="fw-bold pt-2"><i class="bi-exclamation-circle-fill fs-4"></i> Esta acción es irreversible</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+      <form action="{% url 'juegos:eliminar_juego' juego.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar juego</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

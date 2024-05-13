@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from juegos.models import Juego
 from juegos.forms import JuegosForm
 
@@ -32,10 +33,10 @@ def crear_juego(req):
         form = JuegosForm(req.POST, req.FILES)
         if form.is_valid():
             form.save()
-            return redirect("juegos:lista_juegos")
-    else: # GET
+            messages.success(req, 'El juego ha sido creado exitosamente')
+            return redirect("administrador:tabla_juegos")
+    else:
         form = JuegosForm()
-
     return render(req, "juegos/crear_juego.html", {"form": form})
 
 
@@ -46,7 +47,8 @@ def editar_juego(req, id: int):
         form = JuegosForm(req.POST, req.FILES, instance=query)
         if form.is_valid():
             form.save()
-            return redirect("juegos:lista_juegos")
+            messages.success(req, f'El juego "{query.titulo } ha sido editado exitosamente"')
+            return redirect("administrador:tabla_juegos")
     else:
         form = JuegosForm(instance=query)
     return render(req, "juegos/crear_juego.html", {"form": form}) 
@@ -57,5 +59,8 @@ def eliminar_juego(req, id:int):
     query = Juego.objects.get(id=id)
     if req.method == "POST":
         query.delete()
-        return redirect("juegos:lista_juegos")
-    # return render(req, "")
+        messages.success(req, f'El juego "{query.titulo}" ha sido eliminado correctamente.')
+        return redirect("administrador:tabla_juegos")
+    else:
+        messages.error(req, 'Ocurrió un error al intentar eliminar el juego.')
+        return redirect("administrador:tabla_juegos")
