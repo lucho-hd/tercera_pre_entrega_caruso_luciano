@@ -17,3 +17,15 @@ Muestra la lista de juegos disponibles en el sitio. A futuro se le agregará una
 
 `/juegos/detalle/ID`
 Muestra más información acerca del juego seleccionado, tales como la desarrolladora, fecha de publicación, descripción, etc. 
+
+`/juegos/crear_juego`
+Permite al usuario crear un nuevo juego en la Base de datos
+
+`/juegos/editar_juego/ID`
+Permite editar el juego seleccionado mediante su ID
+
+`/juegos/eliminar_juego/ID`
+Realiza el despliegue de una ventana modal para la confirmación de que juego se quiere eliminar de la Base de datos 
+
+`/administrador/tabla_juegos`
+Muestra la lista de juegos que hay en el sitio, permitiendo realizar diferentes acciones como por ejemplo la eliminación y edición de un juego mediante su ID
