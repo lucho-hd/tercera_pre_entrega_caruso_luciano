@@ -24,7 +24,7 @@ Permite al usuario crear un nuevo juego en la Base de datos
 `/juegos/editar_juego/ID`
 Permite editar el juego seleccionado mediante su ID
 
-`/juegos/eliminar:juego/ID`
+`/juegos/eliminar_juego/ID`
 Realiza el despliegue de una ventana modal para la confirmación de que juego se quiere eliminar de la Base de datos 
 
 `/administrador/tabla_juegos`
