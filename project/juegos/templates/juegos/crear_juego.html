@@ -1,6 +1,9 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
+    {% if form.instance.id %}
+        Gamers Guild | Editar {{ form.instance.titulo }}
+    {% endif %}
     Gamers Guild | Crear nuevo juego
 {% endblock title %}
 
@@ -8,8 +11,8 @@
 {% block content %}
     <section class="container-fluid align-items-center my-4">
         {% if form.instance.id %}
-            <h2 class="mb-3">Editar juego</h2>
-        {% else %}
+            <h2 class="mb-3">Editar {{ form.instance.titulo }}</h2>
+        {% else %}'
             <h2 class="mb-3">Crear un nuevo juego</h2>
         {% endif %}
         <form 

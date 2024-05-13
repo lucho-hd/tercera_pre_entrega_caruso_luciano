@@ -357,8 +357,33 @@ a {
 
   /*!---------------------------------- Admin nav -------------------------------------------*/
 
-  
+  .bg-admin {
+      background: #f2f2f2;
+  }
+    .text-white.expanded {
+      display: inline;
+      transition: ease-in-out 5ms;
+    }
 
+    .bg-admin.collapsed {
+      width: auto;
+    }
+    
+    .bg-admin.collapsed span  {
+        display: none !important;
+    } 
+    
+    .bg-admin.collapsed h1  {
+        display: none !important;
+    } 
+
+    .table-descripcion {
+      white-space: nowrap;      
+      overflow: hidden;           
+      text-overflow: ellipsis;   
+      max-width: 250px;          
+    }
+      
 
  /*!---------------------------------- Media Query -------------------------------------------*/
 
