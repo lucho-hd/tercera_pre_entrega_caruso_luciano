@@ -1,0 +1,24 @@
+{% extends 'core/admin.html' %}
+
+{% block title %}
+    Gamers Guild | Administrar juegos
+{% endblock title %}
+
+{% block content %}
+    <table class="table table-striped table-hover border border-dark rounded mt-4 text-center caption-top">
+        <caption class="fw-semibold border-bottom">Lista de categorías</caption>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+        {% for juego in juegos  %}
+        <tr>
+            <td>{{ juego.id }}</td>
+            <td>{{ juego.titulo }}</td>
+            <td>
+                <a href="{% url 'juegos:detalle_juego' juego.id %}">Ver detalle</a>
+                <a href="{% url 'juegos:editar_juego' juego.id %}">Actualizar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

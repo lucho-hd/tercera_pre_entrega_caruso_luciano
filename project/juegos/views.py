@@ -19,11 +19,13 @@ def lista_juegos(req):
     context = {"juegos": query, "mensaje": mensaje} 
     return render(req, "juegos/lista_juegos.html", context)
 
+
 def detalle_juego(req, id: int):
     """ Muestra la información de un juego en específico mediante su 'id: int' """
     query   = Juego.objects.get(id=id)
     context = {"juego":query} 
     return render(req, "juegos/detalle_juego.html", context)
+
 
 def crear_juego(req):
     if req.method == "POST": # POST
@@ -36,6 +38,24 @@ def crear_juego(req):
 
     return render(req, "juegos/crear_juego.html", {"form": form})
 
+
 def editar_juego(req, id: int):
     """ Permite editar los datos de un juego mediante su ID """
-    
+    query = Juego.objects.get(id=id)
+    if req.method == "POST":
+        form = JuegosForm(req.POST, req.FILES, instance=query)
+        if form.is_valid():
+            form.save()
+            return redirect("juegos:lista_juegos")
+    else:
+        form = JuegosForm(instance=query)
+    return render(req, "juegos/crear_juego.html", {"form": form}) 
+
+
+def eliminar_juego(req, id:int):
+    """ Elimina el juego seleccionado de la Base de Datos """
+    query = Juego.objects.get(id=id)
+    if req.method == "POST":
+        query.delete()
+        return redirect("juegos:lista_juegos")
+    # return render(req, "")
