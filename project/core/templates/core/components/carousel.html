@@ -26,7 +26,11 @@
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
             <div class="position-relative">
-                <img src="{% static 'core/img/hero_image_desktop.webp' %}" class="d-block w-100" alt="">
+                <picture>
+                    <source srcset="{% static 'core/img/hero_image_tablet.jpg' %}" media="(max-width: 1050px)">
+                    <source srcset="{% static 'core/img/hero_image_mobile.jpg' %}" media="(max-width: 700px )">
+                    <img src="{% static 'core/img/hero_image_desktop.webp' %}" class="d-block w-100" alt="">
+                </picture>
                 <div class="carousel-caption">
                     <h2>Senua´s Saga: Hellblade II</h2>
                     <p>Senua vuelve en una brutal saga de supervivencia</p>
@@ -36,7 +40,10 @@
         </div>
         <div class="carousel-item" data-bs-interval="5000">
             <div class="position-relative">
-                <img src="{% static 'core/img/jedi_survivor_desktop.webp' %}" class="d-block w-100" alt="">
+                <picture>
+                    <source srcset="{% static 'core/img/jedi_survivor_tablet.jpg' %}" media="(max-width: 1050px)">
+                    <img src="{% static 'core/img/jedi_survivor_desktop.webp' %}" class="d-block w-100" alt="">
+                    </picture>
                 <div class="carousel-caption">
                     <h2>STAR WARS Jedi: Survivor</h2>
                     <p>Enfréntate a la oscuridad</p>
@@ -46,7 +53,10 @@
         </div>
         <div class="carousel-item" data-bs-interval="5000">
             <div class="position-relative">
-                <img src="{% static 'core/img/star_wars_outlaws_desktop.webp' %}" class="d-block w-100" alt="">
+                <picture>
+                    <source srcset="{% static 'core/img/star_wars_outlaw_tablet.jpg' %}" media="(max-width: 1050px)">
+                    <img src="{% static 'core/img/star_wars_outlaws_desktop.webp' %}" class="d-block w-100" alt="">
+                </picture>
                 <div class="carousel-caption">
                     <h2>Star Wars Outlaws</h2>
                     <p>La galaxia está repleta de oportunidades</p>
