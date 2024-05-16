@@ -29,14 +29,19 @@
         <form 
             action="#"
             method="post"
-            class="border p-4 w-75 rounded"
+            class="border p-4 w-100 rounded row"
             enctype="multipart/form-data"
         >
             {% csrf_token %}
            
-            <div class="mb-3">
+            <div class=" col-md-6 col-12 mb-3">
                 {{ form.titulo.label_tag }}
                 {{ form.titulo }}
+            </div>
+
+            <div class=" col-md-6 col-12 mb-3">
+                {{ form.precio.label_tag }}
+                {{ form.precio }}
             </div>
 
             <div class="mb-3">
@@ -45,16 +50,11 @@
             </div>
 
             <div class="mb-3">
-                {{ form.precio.label_tag }}
-                {{ form.precio }}
-            </div>
-
-            <div class="mb-3">
                 {{ form.fecha_lanzamiento.label_tag }}
                 {{ form.fecha_lanzamiento }}
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 border rounded p-3">
                 <label>{{ form.editores.label }}</label>
                 <div class="checkbox-inline">
                     {% for checkbox in form.editores %}
@@ -66,7 +66,7 @@
                 </div>
             </div>
             
-            <div class="mb-3">
+            <div class="mb-3 border rounded p-3">
                 <label>{{ form.plataformas.label }}</label>
                 <div class="checkbox-inline">
                     {% for checkbox in form.plataformas %}
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 border rounded p-3">
                 <label>{{ form.desarrolladoras.label }}</label>
                 <div class="checkbox-inline">
                     {% for checkbox in form.desarrolladoras %}
@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 border rounded p-3">
                 <label>{{ form.generos.label }}</label>
                 <div class="checkbox-inline">
                     {% for checkbox in form.generos %}
