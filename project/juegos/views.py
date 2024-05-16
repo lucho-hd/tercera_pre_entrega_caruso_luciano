@@ -2,65 +2,88 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from juegos.models import Juego
 from juegos.forms import JuegosForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.db.models import Q
+from typing import Any
 
 # Create your views here.
 
-def lista_juegos(req):
+class JuegoLista(ListView):
     """ Trae la lista de juegos desde la Base de Datos """
-    busqueda = req.GET.get("busqueda", None)
-    if busqueda:
-        query = Juego.objects.filter(titulo__icontains=busqueda)
-    else:
-        query = Juego.objects.all()
+    model = Juego
+    context_object_name = "juegos"
+    template_name = "juegos/lista_juegos.html"
     
-    if not query.exists():
-        mensaje = "No hubo resultados para tu búsqueda. Prueba con otro juego."
-    else:
-        mensaje = None
-    context = {"juegos": query, "mensaje": mensaje} 
-    return render(req, "juegos/lista_juegos.html", context)
+    def get_queryset(self) -> Any:
+        queryset = super().get_queryset()
+        busqueda = self.request.GET.get("busqueda")
+        if busqueda:
+            queryset = queryset.filter(
+                Q(titulo__icontains=busqueda)
+            )
+        return queryset
+    
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        queryset = self.get_queryset()
+        mensaje = "No hubo resultados para tu búsqueda. Prueba con otro juego." if not queryset.exists() else None
+        context['mensaje'] = mensaje
+        return context
 
 
-def detalle_juego(req, id: int):
-    """ Muestra la información de un juego en específico mediante su 'id: int' """
-    query   = Juego.objects.get(id=id)
-    context = {"juego":query} 
-    return render(req, "juegos/detalle_juego.html", context)
+class JuegoDetalle(DetailView):
+    """ Muestra la información de un juego en específico mediante su 'pk: int' """
+    model = Juego
+    context_object_name = "juego"
+    template_name = "juegos/detalle_juego.html"
 
 
-def crear_juego(req):
-    if req.method == "POST": # POST
-        form = JuegosForm(req.POST, req.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(req, 'El juego ha sido creado exitosamente')
-            return redirect("administrador:tabla_juegos")
-    else:
-        form = JuegosForm()
-    return render(req, "juegos/crear_juego.html", {"form": form})
+class JuegoCrear(CreateView):
+    """ Permite la creación de un juego en la Base de datos """
+    model = Juego
+    template_name = "juegos/crear_juego.html"
+    form_class = JuegosForm
+    success_url = reverse_lazy("administrador:tabla_juegos")
+
+    def form_valid(self, form):
+        """ Devuelve un mensaje de éxito cuando el juego es creado """
+        messages.success(self.request, 'El juego ha sido creado exitosamente')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error al crear el juego. Por favor revisa los campos e intenta nuevamente.')
+        return super().form_invalid(form)
 
 
-def editar_juego(req, id: int):
-    """ Permite editar los datos de un juego mediante su ID """
-    query = Juego.objects.get(id=id)
-    if req.method == "POST":
-        form = JuegosForm(req.POST, req.FILES, instance=query)
-        if form.is_valid():
-            form.save()
-            messages.success(req, f'El juego "{query.titulo } ha sido editado exitosamente"')
-            return redirect("administrador:tabla_juegos")
-    else:
-        form = JuegosForm(instance=query)
-    return render(req, "juegos/crear_juego.html", {"form": form}) 
+class JuegoEditar(UpdateView):
+    """ Permite la edición de un juego en la Base de datos mediante su <int:pk> """
+    model =  Juego
+    template_name = "juegos/crear_juego.html"
+    form_class = JuegosForm
+    success_url = reverse_lazy("administrador:tabla_juegos")
+
+    def form_valid(self, form):
+        """ Devuelve un mensaje de éxito cuando el juego es editado """
+        juego = self.get_object()
+        messages.success(self.request, f'El juego "{juego}" ha sido actualizado exitosamente')
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'Error al editar el juego. Por favor revisa los campos e intenta nuevamente.')
+        return super().form_invalid(form)
 
 
-def eliminar_juego(req, id:int):
+class JuegoEliminar(DeleteView):
     """ Elimina el juego seleccionado de la Base de Datos """
-    query = Juego.objects.get(id=id)
-    if req.method == "POST":
-        query.delete()
-        messages.success(req, f'El juego "{query.titulo}" ha sido eliminado correctamente.')
-        return redirect("administrador:tabla_juegos")
-    else:
-        messages.error(req, 'Ocurrió un error al intentar eliminar el juego.')
-        return redirect("administrador:tabla_juegos")
+    model = Juego
+    success_url = reverse_lazy("administrador:tabla_juegos")
+
+    def delete(self, request):
+        juego = self.get_object()
+        messages.success(request, f'El juego "{juego}" ha sido eliminado correctamente.')
+        return super().delete(request)
+
+    def get(self, request):
+        messages.error(request, 'Ocurrió un error al intentar eliminar el juego.')
+        return redirect(self.success_url)

@@ -1,10 +1,11 @@
-{% extends 'core/base.html' %}
+{% extends 'core/admin.html' %}
 
 {% block title %}
     {% if form.instance.id %}
         Gamers Guild | Editar {{ form.instance.titulo }}
+    {% else %}
+        Gamers Guild | Crear nuevo juego
     {% endif %}
-    Gamers Guild | Crear nuevo juego
 {% endblock title %}
 
 
@@ -17,7 +18,7 @@
                 </a>
                 Editar {{ form.instance.titulo }}
             </h2>
-        {% else %}'
+        {% else %}
             <h2 class="mb-3">
                 <a href="{% url 'administrador:tabla_juegos' %}">
                     <i class="bi-arrow-left-circle"></i>
@@ -32,7 +33,75 @@
             enctype="multipart/form-data"
         >
             {% csrf_token %}
-            {{ form.as_p }}
+           
+            <div class="mb-3">
+                {{ form.titulo.label_tag }}
+                {{ form.titulo }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.descripcion.label_tag }}
+                {{ form.descripcion }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.precio.label_tag }}
+                {{ form.precio }}
+            </div>
+
+            <div class="mb-3">
+                <label>{{ form.editores.label }}</label>
+                <div class="checkbox-inline">
+                    {% for checkbox in form.editores %}
+                        <div class="form-check form-check-inline">
+                            {{ checkbox }}
+                            <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label>{{ form.plataformas.label }}</label>
+                <div class="checkbox-inline">
+                    {% for checkbox in form.plataformas %}
+                        <div class="form-check form-check-inline">
+                            {{ checkbox }}
+                            <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label>{{ form.desarrolladoras.label }}</label>
+                <div class="checkbox-inline">
+                    {% for checkbox in form.desarrolladoras %}
+                        <div class="form-check form-check-inline">
+                            {{ checkbox }}
+                            <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label>{{ form.generos.label }}</label>
+                <div class="checkbox-inline">
+                    {% for checkbox in form.generos %}
+                        <div class="form-check form-check-inline">
+                            {{ checkbox }}
+                            <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form.imagen.label_tag }}
+                {{ form.imagen }}
+            </div>
+            
             <div class="d-grid">
                 <button 
                     type="submit"
