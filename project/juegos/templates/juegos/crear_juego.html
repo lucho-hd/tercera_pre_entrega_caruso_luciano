@@ -50,6 +50,11 @@
             </div>
 
             <div class="mb-3">
+                {{ form.fecha_lanzamiento.label_tag }}
+                {{ form.fecha_lanzamiento }}
+            </div>
+
+            <div class="mb-3">
                 <label>{{ form.editores.label }}</label>
                 <div class="checkbox-inline">
                     {% for checkbox in form.editores %}
