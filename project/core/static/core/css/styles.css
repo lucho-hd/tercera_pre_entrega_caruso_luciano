@@ -383,8 +383,18 @@ a {
       text-overflow: ellipsis;   
       max-width: 250px;          
     }
-      
 
+    .table-item {
+      width: 10%;
+      white-space: nowrap;   
+      vertical-align: middle;
+    }
+
+    .table-badge {
+      white-space: nowrap;
+      vertical-align: middle
+    }
+      
  /*!---------------------------------- Media Query -------------------------------------------*/
 
   @media screen and (max-width: 1050px)  { 

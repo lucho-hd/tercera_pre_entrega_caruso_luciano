@@ -15,7 +15,7 @@
         <h2>Administrar juegos</h2>
         <a href="{% url 'juegos:crear_juego' %} " class="btn-banner p-1 px-2 mt-0 text-dark"> Crear un nuevo juego</a>
     </div>
-    <div class="table-responsive bg-white p-3 overflow-x-auto admin border border-dark rounded mt-4">
+    <div class="table-responsive bg-white p-3 overflow-auto admin border border-dark rounded mt-4">
         <table class="table caption-top table-hover table-bordered border-secondary text-center">
             <!-- TODO: Agregar buscador -->
             <caption class="fw-bold">Lista de juegos disponibles en el sitio</caption>
@@ -27,6 +27,7 @@
                     <th>Descripción</th>
                     <th>Fecha de publicación</th>
                     <th>Plataformas</th>
+                    <th>Editores</th>
                     <th>Desarrolladoras</th>
                     <th>Géneros</th>
                     <th>Acciones</th>
@@ -35,27 +36,32 @@
             <tbody>
                 {% for juego in juegos %}
                 <tr>
-                    <td>{{ juego.id }}</td>
-                    <td>{{ juego.titulo }}</td>
-                    <td>${{ juego.precio }}</td>
-                    <td class="table-descripcion">{{ juego.descripcion }}</td>
-                    <td>{{ juego.fecha_lanzamiento }}</td>
-                    <td>
+                    <td class="table-item">{{ juego.id }}</td>
+                    <td class="table-item">{{ juego.titulo }}</td>
+                    <td class="table-item">${{ juego.precio }}</td>
+                    <td class="table-descripcion table-item">{{ juego.descripcion }}</td>
+                    <td class="table-item">{{ juego.fecha_lanzamiento }}</td>
+                    <td class="table-item">
                         {% for plataforma in juego.plataformas.all %}
                             <span class="badge bg-secondary text-white">{{ plataforma.nombre }}</span>
                         {% endfor %}
                     </td>
-                    <td>
+                    <td class="table-badge">
+                        {% for editor in juego.editores.all %}
+                            <span class="badge bg-secondary text-white">{{ editor.nombre }}</span>
+                        {% endfor %}
+                    </td>
+                    <td class="table-badge">
                         {% for desarrolladora in juego.desarrolladoras.all %}
                             <span class="badge bg-secondary text-white">{{ desarrolladora.nombre }}</span>
                         {% endfor %}
                     </td>
-                    <td>
+                    <td class="table-badge">
                         {% for genero in juego.generos.all %}
                             <span class="badge bg-secondary text-white">{{ genero.nombre }}</span>
                         {% endfor %}
                     </td>
-                    <td class="d-flex flex-column gap-2">
+                    <td class="d-flex flex-column gap-3">
                         <a href="{% url 'juegos:editar_juego' juego.id %}" class="btn btn-primary">Editar</a>
                         <a 
                             href="#" 
