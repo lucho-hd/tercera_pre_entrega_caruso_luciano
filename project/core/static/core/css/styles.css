@@ -104,8 +104,19 @@ a {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   }
 
+  .dropdown-menu {
+    padding: 0px !important;
+  }
+
+  .dropdown-item {
+    padding: 10px;
+  }
+
+  .dropdown-item:hover {
+    background: #7db817 !important;
+  }
+
   /*!---------------------------------- Carousel -------------------------------------------*/
-  /* TODO: Redimensionar para responsive */
 
   .carousel-caption {
     position: absolute;
@@ -304,6 +315,10 @@ a {
     margin-bottom: 10px;
     font-weight: 500;
   }
+
+  .form-login {
+    width: 30%;
+  }
   
   /*!---------------------------------- Footer -------------------------------------------*/
 
@@ -397,6 +412,13 @@ a {
       
  /*!---------------------------------- Media Query -------------------------------------------*/
 
+ @media screen and (max-width: 1165px)  {
+    .form-login {
+      width: 50%;
+    } 
+ }
+ 
+
   @media screen and (max-width: 1050px)  { 
     .carousel-caption {
       position: absolute;
@@ -455,6 +477,10 @@ a {
       font-size: 14px !important;
       font-weight: 700;
       text-transform: uppercase;
+    }
+    
+    .form-login {
+      width: 80%;
     }
   }
   

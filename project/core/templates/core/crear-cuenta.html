@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Gamers Guild | Crear cuenta
+{% endblock title %}
+
+{% block content %}
+    <section class="container border rounded my-5 p-4 form-login shadow">
+        <h2 class="border-bottom pb-2">Crear cuenta</h2>
+        <form action="#" method="POST" enctype="multipart/form-data" class="my-3">
+            {% csrf_token %}
+          
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="text-danger">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+    
+            <div class="mb-3">
+                <label for="{{ form.password1.id_for_label }}" class="form-label">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="text-danger">
+                        {{ form.password1.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="text-danger">
+                        {{ form.password2.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <small>¿Ya tienes una cuenta? <a href="{% url 'core:iniciar-sesion' %}">Inicia Sesión aquí</a></small>
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn btn-banner px-2 py-1 border-0">Crear cuenta</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}

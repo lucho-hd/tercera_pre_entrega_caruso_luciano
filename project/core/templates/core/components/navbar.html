@@ -31,22 +31,37 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'juegos:lista_juegos' %}">Juegos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'administrador:tabla_juegos' %}">Ir al administrador</a>
-                    </li>
                 </ul>
                 
                 <!-- Rutas de Iniciar Sesión y Crear Cuenta -->
                 <ul class="navbar-nav mt-lg-2 mt-lg-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Iniciar Sesión</a> 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link button-register" href="#">
-                            <i class="bi-plus-circle"></i>
-                            Crear Cuenta
-                        </a> 
-                    </li>
+                    {% if not user.is_authenticated %}    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'core:iniciar-sesion' %}">Iniciar Sesión</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link button-register" href="#">
+                                <i class="bi-plus-circle"></i>
+                                Crear Cuenta
+                            </a> 
+                        </li>
+                    {% else %}
+                        <div class="dropdown-center mt-2 ms-sm-4">
+                            <span class="dropdown-toggle me-5 pe-4 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.username }}
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'administrador:tabla_juegos' %}">Ir a admin</a></li>
+                                <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                                <li>
+                                    <form action="{% url 'core:cerrar-sesion' %}" method="POST">   
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
                 </ul>
             </div>
         </div>

@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}    
+    Gamers Guild | Iniciar Sesión
+{% endblock title %}
+
+{% block content %}    
+    <section class="container border rounded my-5 p-4 form-login shadow">
+        <h2 class="border-bottom pb-2">Iniciar Sesión</h2>
+        <form action="#" method="POST" enctype="multipart/form-data" class="my-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{% url 'core:index' %}">
+            <small>¿Todavía no tienes una cuenta? <a href="#">Regístrate aquí</a></small>
+            <div class="d-flex justify-content-end my-3">
+                <button type="submit" class="btn-banner px-2 py-1 border-0">Iniciar Sesión</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
