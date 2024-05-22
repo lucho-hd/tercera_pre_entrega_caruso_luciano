@@ -51,9 +51,15 @@
                     </div>
                     <div class="mt-3">
                         <h4 class="fs-5">Desarrollado por</h4>
-                        {% for desarrolladora in juego.desarrolladoras.all  %}
-                            <span>{{ desarrolladora.nombre }}</span>
-                        {% endfor %}
+                        {% if juego.desarrolladoras.count > 1 %}
+                            {% for desarrolladora in juego.desarrolladoras.all %}
+                                <span>{{ desarrolladora.nombre }}{% if not forloop.last %} - {% endif %}</span>
+                            {% endfor %}
+                        {% else %}
+                            {% for desarrolladora in juego.desarrolladoras.all %}
+                                <span>{{ desarrolladora.nombre }}</span>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="mt-3">
                         <h4 class="fs-5">Fecha de publicación</h4>

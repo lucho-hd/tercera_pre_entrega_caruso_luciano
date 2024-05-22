@@ -1,5 +1,8 @@
 from django.db import models
 from datetime import datetime
+import os
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, post_delete
 
 class Plataforma(models.Model):
     """ Modelo de plataformas """
@@ -68,3 +71,24 @@ class Juego(models.Model):
     class Meta: 
         verbose_name = "Juego"
         verbose_name_plural = "Juegos"
+
+
+@receiver(pre_save, sender=Juego)
+def eliminar_imagen_vieja(sender, instance, **kwargs):
+    if not instance.pk:
+        return False
+
+    try:
+        imagen_vieja = Juego.objects.get(pk=instance.pk).imagen
+    except Juego.DoesNotExist:
+        return False
+
+    if imagen_vieja and imagen_vieja != instance.imagen:
+        if os.path.isfile(imagen_vieja.path):
+            os.remove(imagen_vieja.path)
+
+@receiver(post_delete, sender=Juego)
+def eliminar_imagen(sender, instance, **kwargs):
+    if instance.imagen:
+        if os.path.isfile(instance.imagen.path):
+            os.remove(instance.imagen.path)

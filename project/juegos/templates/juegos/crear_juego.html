@@ -102,6 +102,13 @@
                 </div>
             </div>
 
+            {% if form.instance.id %}
+                <div class="mb-3 w-25 h-auto">
+                    <p class="fw-semibold">Imagen actual</p>
+                    <img src="{{ form.instance.imagen.url }}" alt="{{ form.instance.titulo }}" class="img-fluid rounded">
+                </div>
+            {% endif %}
+
             <div class="mb-3">
                 {{ form.imagen.label_tag }}
                 {{ form.imagen }}
