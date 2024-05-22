@@ -319,6 +319,12 @@ a {
   .form-login {
     width: 30%;
   }
+
+  textarea {
+    max-height: max-content;
+    overflow: hidden;
+    resize: none;
+  }
   
   /*!---------------------------------- Footer -------------------------------------------*/
 

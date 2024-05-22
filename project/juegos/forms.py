@@ -1,6 +1,54 @@
 from django import forms
 from . import models
 
+class PlataformasForm(forms.ModelForm):
+    class Meta:
+        model  = models.Plataforma
+        fields = ["nombre"]
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre de la plataforma'})
+        } 
+        labels = {
+            'nombre': 'Nombre'
+        }
+
+
+class DesarrolladorasForm(forms.ModelForm):
+    class Meta:
+        model  = models.Desarrolladora
+        fields = ["nombre"]
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre de la desarrolladora'})
+        } 
+        labels = {
+            'nombre': 'Nombre'
+        }
+
+
+class GenerosForm(forms.ModelForm):
+    class Meta:
+        model  = models.Genero
+        fields = ["nombre"]
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del género'})
+        } 
+        labels = {
+            'nombre': 'Nombre'
+        }
+
+
+class EditoresForm(forms.ModelForm):
+    class Meta:
+        model  = models.Editor
+        fields = ["nombre"]
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el nombre del editor'})
+        } 
+        labels = {
+            'nombre': 'Nombre'
+        }
+
+
 class JuegosForm(forms.ModelForm):
     class Meta:
         model = models.Juego
