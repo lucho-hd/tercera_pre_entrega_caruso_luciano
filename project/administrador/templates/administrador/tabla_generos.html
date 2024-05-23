@@ -1,7 +1,7 @@
 {% extends 'core/admin.html' %}
 
 {% block title %}
-    Gamers Guild | Administrar plataformas
+    Gamers Guild | Administrar géneros
 {% endblock title %}
 
 {% block content %}
@@ -12,12 +12,12 @@
       </div>
     {% endfor %}
     <div class="d-flex justify-content-between align-items-center border-bottom mt-4 py-1">
-        <h2>Administrar plataformas</h2>
-        <a href="{% url 'juegos:crear_plataforma' %} " class="btn-banner p-1 px-2 mt-0 text-dark"> Crear una nueva plataforma</a>
+        <h2>Administrar géneros</h2>
+        <a href="{% url 'juegos:crear_genero' %} " class="btn-banner p-1 px-2 mt-0 text-dark"> Crear una nuevo género</a>
     </div>
     <div class="table-responsive bg-white p-3 overflow-auto admin border border-dark rounded mt-4">
         <table class="table caption-top table-hover table-bordered border-secondary text-center">
-            <caption class="fw-bold">Lista de plataformas disponibles en el sitio</caption>
+            <caption class="fw-bold">Lista de géneros disponibles en el sitio</caption>
             <thead class="text-center">
                 <tr>
                     <th>#</th>
@@ -26,21 +26,21 @@
                 </tr>
             </thead>
             <tbody>
-                {% for plataforma in plataformas %}
+                {% for genero in generos %}
                 <tr>
-                    <td>{{ plataforma.id }}</td>
-                    <td>{{ plataforma.nombre }}</td>
+                    <td>{{ genero.id }}</td>
+                    <td>{{ genero.nombre }}</td>
                     <td class="d-flex justify-content-center gap-3">
-                        <a href="{% url 'juegos:editar_plataforma' plataforma.id %}" class="btn btn-primary px-4">Editar</a>
+                        <a href="{% url 'juegos:editar_genero' genero.id %}" class="btn btn-primary px-4">Editar</a>
                         <a 
                             href="#" 
                             class="btn btn-danger px-4"
                             data-bs-toggle="modal"
-                            data-bs-target="#modal-eliminar-{{ plataforma.id }}"
+                            data-bs-target="#modal-eliminar-{{ genero.id }}"
                         >
                             Eliminar
                         </a>
-                        {% include 'core/components/modal-eliminar.html' with item_id=plataforma.id item_name=plataforma.nombre item_type='plataforma' delete_url=plataforma.get_delete_url %}
+                        {% include 'core/components/modal-eliminar.html' with item_id=genero.id item_name=genero.nombre item_type='genero' delete_url=genero.get_delete_url %}
                     </td>
                 </tr>
                 {% endfor %}

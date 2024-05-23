@@ -1,0 +1,38 @@
+{% extends 'core/admin.html' %}
+
+{% block title %}
+    {% if form.instance.id %}
+        Gamers Guild | Editar {{ form.instance.nombre }}
+    {% else %}
+        Gamers Guild | Crear Género
+    {% endif %}
+{% endblock title %}
+
+
+{% block content %}
+    <section class="container-fluid align-items-center my-4">
+        <h2 class="mb-3">
+            <a href="{% url 'administrador:tabla_generos' %}">
+                <i class="bi-arrow-left-circle"></i>
+            </a>
+            {% if form.instance.id %}
+                Editar {{ form.instance.nombre }}
+            {% else %}
+                Crear un nuevo género
+            {% endif %}
+        </h2>
+        <form action="#" method="POST" class="border p-4 w-100 rounded row">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid">
+                <button class="btn-banner border-0 p-1" type="submit">
+                    {% if form.instance.id %}
+                        Editar {{ form.instance.nombre }}
+                    {% else %}
+                        Crear nuevo género
+                    {% endif %}
+                </button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from datetime import datetime
 import os
 from django.dispatch import receiver
@@ -11,6 +12,9 @@ class Plataforma(models.Model):
     def __str__(self) -> str:
         return self.nombre
 
+    def get_delete_url(self):
+      return reverse('juegos:eliminar_plataforma', kwargs={'pk': self.pk})
+
     class Meta:
         verbose_name = "Plataforma"
         verbose_name_plural = "Plataformas"
@@ -22,6 +26,9 @@ class Desarrolladora(models.Model):
 
     def __str__(self) -> str:
         return self.nombre
+    
+    def get_delete_url(self):
+      return reverse('juegos:eliminar_desarrolladora', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Desarrolladora"
@@ -35,6 +42,9 @@ class Genero(models.Model):
     def __str__(self) -> str:
         return self.nombre
 
+    def get_delete_url(self):
+      return reverse('juegos:eliminar_genero', kwargs={'pk': self.pk})
+
     class Meta:
         verbose_name = "Género"
         verbose_name_plural = "Géneros"
@@ -47,6 +57,9 @@ class Editor(models.Model):
 
     def __str__(self) -> str:
         return self.nombre
+
+    def get_delete_url(self):
+      return reverse('juegos:eliminar_editor', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Editor"
@@ -67,6 +80,9 @@ class Juego(models.Model):
 
     def __str__(self) -> str:
         return self.titulo
+
+    def get_delete_url(self):
+      return reverse('juegos:eliminar_juego', kwargs={'pk': self.pk})
 
     class Meta: 
         verbose_name = "Juego"

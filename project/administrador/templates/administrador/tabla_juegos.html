@@ -67,11 +67,11 @@
                             href="#" 
                             class="btn btn-danger"
                             data-bs-toggle="modal"
-                            data-bs-target="#modal-juego-eliminar-{{ juego.id }}"
+                            data-bs-target="#modal-eliminar-{{ juego.id }}"
                         >
                             Eliminar
                         </a>
-                        {% include 'core/components/modal-juego-eliminar.html' with juego=juego%}
+                        {% include 'core/components/modal-eliminar.html' with item_id=juego.id item_name=juego.titulo item_type='juego' delete_url=juego.get_delete_url %}
                     </td>
                 </tr>
                 {% endfor %}

@@ -63,6 +63,7 @@
                             <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
                         </div>
                     {% endfor %}
+                    <a href="{% url 'juegos:crear_editor' %}"><i class="bi-plus-circle"></i> Agregar editor</a>
                 </div>
             </div>
             
@@ -74,7 +75,8 @@
                             {{ checkbox }}
                             <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                        <a href="{% url 'juegos:crear_plataforma' %}"><i class="bi-plus-circle"></i> Agregar plataforma</a>
                 </div>
             </div>
 
@@ -86,7 +88,8 @@
                             {{ checkbox }}
                             <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                        <a href="{% url 'juegos:crear_desarrolladora' %}"><i class="bi-plus-circle"></i> Agregar desarrolladora</a>
                 </div>
             </div>
 
@@ -99,6 +102,7 @@
                             <label class="form-check-label" for="{{ checkbox.id_for_label }}"></label>
                         </div>
                     {% endfor %}
+                    <a href="{% url 'juegos:crear_genero' %}"><i class="bi-plus-circle"></i> Agregar género</a>
                 </div>
             </div>
 
