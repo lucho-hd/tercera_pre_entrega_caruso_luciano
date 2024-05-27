@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import AccessMixin
 from django.contrib import messages
 from juegos.models import Juego, Plataforma, Desarrolladora, Editor, Genero
 from juegos.forms import JuegosForm, PlataformasForm, DesarrolladorasForm, GenerosForm, EditoresForm
@@ -8,6 +9,8 @@ from django.db.models import Q
 from typing import Any
 
 # Create your views here.
+
+#! TODO:: Ver como crear un middleware para restringir el acceso al panel de administración si bien esto funciona
 
 class JuegoLista(ListView):
     """ Trae la lista de juegos desde la Base de Datos """
@@ -39,7 +42,15 @@ class JuegoDetalle(DetailView):
     template_name = "juegos/detalle_juego.html"
 
 
-class JuegoCrear(CreateView):
+class AdminRequiredMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            messages.error(request, 'No tienes los permisos suficientes para realizar esta acción.')
+            return redirect('core:index')
+        return super().dispatch(request, *args, **kwargs) # type: ignore
+
+
+class JuegoCrear(AdminRequiredMixin, CreateView):
     """ Permite la creación de un juego en la Base de datos """
     model = Juego
     template_name = "juegos/crear_juego.html"
@@ -56,7 +67,7 @@ class JuegoCrear(CreateView):
         return super().form_invalid(form)
 
 
-class JuegoEditar(UpdateView):
+class JuegoEditar(AdminRequiredMixin, UpdateView):
     """ Permite la edición de un juego en la Base de datos mediante su <int:pk> """
     model =  Juego
     template_name = "juegos/crear_juego.html"
@@ -74,7 +85,7 @@ class JuegoEditar(UpdateView):
         return super().form_invalid(form)
 
 
-class JuegoEliminar(DeleteView):
+class JuegoEliminar(AdminRequiredMixin, DeleteView):
     """ Elimina el juego seleccionado de la Base de Datos """
     model = Juego
     success_url = reverse_lazy("administrador:tabla_juegos")
@@ -91,7 +102,7 @@ class JuegoEliminar(DeleteView):
 
 #!-------------------------------------- Plataformas ---------------------------------------------------
 
-class PlataformaCrear(CreateView):
+class PlataformaCrear(AdminRequiredMixin, CreateView):
     """ Crea una nueva plataforma en la BD """
     model = Plataforma
     form_class = PlataformasForm
@@ -108,7 +119,7 @@ class PlataformaCrear(CreateView):
         return super().form_invalid(form)
 
 
-class PlataformaEditar(UpdateView):
+class PlataformaEditar(AdminRequiredMixin, UpdateView):
     """ Edita la plataforma seleccionada en la BD """
     model = Plataforma
     form_class = PlataformasForm
@@ -126,7 +137,7 @@ class PlataformaEditar(UpdateView):
         return super().form_invalid(form)
 
 
-class PlataformaEliminar(DeleteView):
+class PlataformaEliminar(AdminRequiredMixin, DeleteView):
     """ Elimina la plataforma seleccionada de la Base de Datos """
     model = Plataforma
     success_url = reverse_lazy("administrador:tabla_plataformas")
@@ -143,7 +154,7 @@ class PlataformaEliminar(DeleteView):
 
 #!-------------------------------------- Desarrolladoras ---------------------------------------------------
 
-class DesarrolladoraCrear(CreateView):
+class DesarrolladoraCrear(AdminRequiredMixin, CreateView):
     """ Crea una nueva desarrolladora en la BD """
     model = Desarrolladora
     form_class = DesarrolladorasForm
@@ -160,7 +171,7 @@ class DesarrolladoraCrear(CreateView):
         return super().form_invalid(form)
 
 
-class DesarrolladoraEditar(UpdateView):
+class DesarrolladoraEditar(AdminRequiredMixin, UpdateView):
     """ Edita la desarrolladora seleccionada en la BD """
     model = Desarrolladora
     form_class = DesarrolladorasForm
@@ -178,7 +189,7 @@ class DesarrolladoraEditar(UpdateView):
         return super().form_invalid(form)
 
 
-class DesarrolladoraEliminar(DeleteView):
+class DesarrolladoraEliminar(AdminRequiredMixin, DeleteView):
     """ Elimina la desarrolladora seleccionada de la Base de Datos """
     model = Desarrolladora
     success_url = reverse_lazy("administrador:tabla_desarrolladoras")
@@ -194,7 +205,7 @@ class DesarrolladoraEliminar(DeleteView):
 
 #!-------------------------------------- Géneros ---------------------------------------------------
 
-class GeneroCrear(CreateView):
+class GeneroCrear(AdminRequiredMixin, CreateView):
     """ Crea un nuevo género en la BD """
     model = Genero
     form_class = GenerosForm
@@ -211,7 +222,7 @@ class GeneroCrear(CreateView):
         return super().form_invalid(form)
     
 
-class GeneroEditar(UpdateView):
+class GeneroEditar(AdminRequiredMixin, UpdateView):
     """ Edita el género seleccionado en la BD """
     model = Genero
     form_class = GenerosForm
@@ -229,7 +240,7 @@ class GeneroEditar(UpdateView):
         return super().form_invalid(form)
 
 
-class GeneroEliminar(DeleteView):
+class GeneroEliminar(AdminRequiredMixin, DeleteView):
     """ Elimina el género seleccionado de la Base de Datos """
     model = Genero
     success_url = reverse_lazy("administrador:tabla_generos")
@@ -245,7 +256,7 @@ class GeneroEliminar(DeleteView):
 
 #!-------------------------------------- Editores ---------------------------------------------------
 
-class EditorCrear(CreateView):
+class EditorCrear(AdminRequiredMixin, CreateView):
     """ Crea un nuevo editor en la BD """
     model = Editor
     form_class = EditoresForm
@@ -262,7 +273,7 @@ class EditorCrear(CreateView):
         return super().form_invalid(form)
 
 
-class EditorEditar(UpdateView):
+class EditorEditar(AdminRequiredMixin, UpdateView):
     """ Edita el editor seleccionado en la BD """
     model = Editor
     form_class = EditoresForm
@@ -280,7 +291,7 @@ class EditorEditar(UpdateView):
         return super().form_invalid(form)
 
 
-class EditorEliminar(DeleteView):
+class EditorEliminar(AdminRequiredMixin, DeleteView):
     """ Elimina el editor seleccionado de la Base de Datos """
     model = Editor
     success_url = reverse_lazy("administrador:tabla_editores")
