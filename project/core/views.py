@@ -1,9 +1,10 @@
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from juegos.models import Juego
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpRequest, HttpResponse
-from .forms import CustomAuthenticationForm, CustomUserCreationForm
+from .forms import CustomAuthenticationForm, CustomUserCreationForm, UserForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.

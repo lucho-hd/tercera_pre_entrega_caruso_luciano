@@ -47,7 +47,9 @@
                         </li>
                     {% else %}
                         <div class="dropdown-center mt-2 ms-sm-4">
+                            
                             <span class="dropdown-toggle me-5 pe-4 fw-semibold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% include 'core/components/imagen-perfil.html' %}
                                 {{ user.username }}
                             </span>
                             <ul class="dropdown-menu">
