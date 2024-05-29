@@ -18,7 +18,7 @@ Muestra la lista de juegos disponibles en el sitio. A futuro se le agregará una
 ![Lista de juegos](/capturas_sitio/lista_juegos.png)
 
 `/juegos/detalle/ID`
-Muestra más información acerca del juego seleccionado, tales como la desarrolladora, fecha de publicación, descripción, etc. 
+Muestra más información acerca del juego seleccionado, tales como la desarrolladora, fecha de publicación, descripción, etc.
 ![Detalle de un juego](/capturas_sitio/detalle.png)
 
 `/administrador/tabla_juegos`
