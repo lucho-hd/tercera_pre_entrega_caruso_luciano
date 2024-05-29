@@ -5,7 +5,7 @@ Comisión Django 54140
 Alumno: Luciano Caruso
 
 ## Explicación breve del proyecto
-Ecommerce dedicado a la venta de juegos digitales de PS4 y PS5. En un futuro se le van a agregar las secciones de 'Registro', 'Crear cuenta', la opción de agregar al carrito de compras donde el usuario podrá ver sus productos. 
+Ecommerce dedicado a la venta de juegos digitales de PS4 y PS5. En un futuro se le va a agregar la opción de agregar un producto al carrito de compras donde el usuario podrá ver sus productos para pasar al proceso de checkout. También se le agregará la vista para que un usuario pueda editar los datos de su perfil. 
 
 ## Rutas del proyecto
 

@@ -14,6 +14,7 @@ def index(req):
 
 
 class CustomLoginView(LoginView):
+    """ Formulario para iniciar sesión """
     authentication_form = CustomAuthenticationForm
     template_name = "core/iniciar-sesion.html"
 
@@ -24,6 +25,7 @@ class CustomLoginView(LoginView):
 
 
 class CustomLogoutView(LogoutView): 
+    """ Cerrar sesión """
     next_page = '/'
 
     def dispatch(self, request, *args, **kwargs):
@@ -33,6 +35,7 @@ class CustomLogoutView(LogoutView):
 
 
 def crearCuenta(req: HttpRequest) -> HttpResponse:
+    """ Formulario para registrarse en el sitio """
     if req.method == "POST":
         form = CustomUserCreationForm(req.POST)
         if form.is_valid():
