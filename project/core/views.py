@@ -6,6 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from .forms import CustomAuthenticationForm, CustomUserCreationForm, UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import PerfilUsuario
 
 # Create your views here.
 def index(req):
@@ -47,3 +48,31 @@ def crearCuenta(req: HttpRequest) -> HttpResponse:
     else:
         form = CustomUserCreationForm()
     return render(req, "core/crear-cuenta.html",{"form": form})
+
+@login_required
+def perfil(req: HttpRequest) -> HttpResponse:
+    """
+    Formulario para editar los datos de un usuario.
+    @returns HttpResponse
+    """
+    perfil, created = PerfilUsuario.objects.get_or_create(usuario=req.user)
+
+    if req.method == 'POST':
+        user_form = UserForm(req.POST, instance=req.user)
+        profile_form = UserProfileForm(req.POST, req.FILES, instance=perfil)
+        
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(req, '¡Tu perfil ha sido actualizado!')
+            return redirect('core:perfil')
+    else:
+        user_form = UserForm(instance=req.user)
+        profile_form = UserProfileForm(instance=perfil)
+    
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form,
+    }
+    
+    return render(req, 'core/perfil.html', context)

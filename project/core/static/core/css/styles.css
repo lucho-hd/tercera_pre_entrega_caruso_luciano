@@ -311,6 +311,44 @@ a {
 
   /*!---------------------------------- Formularios -------------------------------------------*/
 
+  .image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000 ;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .edit {
+    position: absolute;
+    bottom: 0px;
+    right: 30px;
+    background: #005daf;
+    color: #fff;;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 8px;
+    transition: background 0.3s;
+  }
+
+  .edit:hover {
+    background:#003462;
+  }
+
+  #imagen_perfil {
+    display: none;
+  }
+
+  /*!---------------------------------- Formularios -------------------------------------------*/
+
   label {
     margin-bottom: 10px;
     font-weight: 500;

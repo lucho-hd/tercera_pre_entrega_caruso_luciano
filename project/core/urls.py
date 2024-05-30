@@ -4,6 +4,7 @@ from core.views import (
     CustomLoginView,
     CustomLogoutView,
     crearCuenta,
+    perfil,
 ) 
 
 app_name = "core"
@@ -13,4 +14,5 @@ urlpatterns = [
     path("iniciar-sesion", CustomLoginView.as_view(),  name="iniciar-sesion"),
     path("cerrar-sesion",  CustomLogoutView.as_view(), name="cerrar-sesion"),
     path("crear-cuenta", crearCuenta, name="crear-cuenta"),
+    path("perfil", perfil, name="perfil" )
 ]

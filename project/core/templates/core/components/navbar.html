@@ -56,7 +56,7 @@
                                 {% if user.is_staff %}
                                     <li><a class="dropdown-item" href="{% url 'administrador:tabla_juegos' %}">Ir a admin</a></li>
                                 {% endif %}
-                                <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                                <li><a class="dropdown-item" href="{% url 'core:perfil' %}">Mi perfil</a></li>
                                 <li>
                                     <form action="{% url 'core:cerrar-sesion' %}" method="POST">   
                                         {% csrf_token %}

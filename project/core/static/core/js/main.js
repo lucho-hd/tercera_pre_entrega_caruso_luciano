@@ -9,7 +9,6 @@ window.addEventListener('scroll', function() {
     }
   });
   
-
   document.addEventListener('DOMContentLoaded', function() {
     const textareas = document.querySelectorAll('textarea');
 
@@ -27,4 +26,14 @@ window.addEventListener('scroll', function() {
             adjustHeight(textarea);
         });
     });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const editIcon = document.getElementById('icono_edit');
+  const fileInput = document.getElementById('imagen_perfil');
+
+  editIcon.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      fileInput.click(); 
+  });
 });

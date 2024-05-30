@@ -1,7 +1,7 @@
 {% load static %}
 
 {% if user.perfil.imagen_perfil %}
-    <img src="{{ user.perfil.imagen_perfil.url }}" alt="Imagen de perfil de {{ user.username }}" width="30" height="30" class="border border-dark rounded-circle">
+    <img src="{{ user.perfil.imagen_perfil.url }}" alt="Imagen de perfil de {{ user.username }}" width="30" height="30" class="border border-dark rounded-circle {{ classes }}">
 {% else %}
-    <img src="{% static 'core/img/imagenPorDefecto.png' %}" alt="Imagen de perfil de {{ user.username }}" width="30" height="30" class="border border-dark rounded-circle">
+    <img src="{% static 'core/img/imagenPorDefecto.png' %}" alt="Imagen de perfil de {{ user.username }}" width="30" height="30" class="border border-dark rounded-circle {{ classes }}">
 {% endif %}

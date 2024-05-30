@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Gamers Guild | Mi perfil
+{% endblock title %}
+
+
+{% block content %}
+    <section class="container mt-5">
+        <h2 class="border-bottom pb-2 mb-3">Mis datos</h2>
+        <form method="POST" enctype="multipart/form-data" class="border rounded p-4">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="mb-4">Datos de la cuenta</legend>
+                <div class="image-container">
+                    {% include 'core/components/imagen-perfil.html' with classes="profile-image" %}
+                    <label for="imagen_perfil" class="edit" id="icono_edit">
+                        <i class="bi-pencil-fill fs-5"></i>
+                    </label>
+
+                    <input 
+                        id="imagen_perfil"
+                        name="imagen_perfil"
+                        type="file"
+                    />
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="{{ user_form.email.id_for_label }}" class="form-label">{{ user_form.email.label }}</label>
+                    {{ user_form.email }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="{{ user_form.username.id_for_label }}" class="form-label">{{ user_form.username.label }}</label>
+                    {{ user_form.username }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+            </div>
+        </form>
+    </section>
+{% endblock content %}
