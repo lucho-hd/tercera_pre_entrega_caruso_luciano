@@ -24,10 +24,12 @@ class CustomUserCreationForm(UserCreationForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model  =  User
-        fields = ["username","email"] 
+        fields = ["first_name", "last_name", "username", "email"] 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu nombre de usuario'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu email'})
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu email'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
         }
 
 

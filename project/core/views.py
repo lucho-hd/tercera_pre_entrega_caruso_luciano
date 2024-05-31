@@ -58,7 +58,7 @@ def perfil(req: HttpRequest) -> HttpResponse:
     perfil, created = PerfilUsuario.objects.get_or_create(usuario=req.user)
 
     if req.method == 'POST':
-        user_form = UserForm(req.POST, instance=req.user)
+        user_form = UserForm(req.POST, instance=req.user) #type: ignore
         profile_form = UserProfileForm(req.POST, req.FILES, instance=perfil)
         
         if user_form.is_valid() and profile_form.is_valid():
@@ -67,7 +67,7 @@ def perfil(req: HttpRequest) -> HttpResponse:
             messages.success(req, '¡Tu perfil ha sido actualizado!')
             return redirect('core:perfil')
     else:
-        user_form = UserForm(instance=req.user)
+        user_form = UserForm(instance=req.user) #type: ignore
         profile_form = UserProfileForm(instance=perfil)
     
     context = {
