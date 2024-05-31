@@ -14,6 +14,10 @@ def index(req):
     context = {"juegos": query} 
     return render(req, "core/index.html", context)
 
+def acerca(req: HttpRequest) -> HttpResponse:
+    """ Vista acerca de mi. Muestra información del creador del sitio """
+    return render(req, "core/acerca.html")
+    
 
 class CustomLoginView(LoginView):
     """ Formulario para iniciar sesión """
