@@ -49,4 +49,4 @@ Formulario para registrarse en el sitio, si los campos solicitados son correctos
 ![Formulario para crear una nueva cuenta](/capturas_sitio/crear.cuenta.png)
 
 `Video de presentación del sitio`
-![Video de presentación del sitio](https://youtu.be/TYtlChH2eTQ)
+![Video de presentación del sitio](https://www.youtube.com/watch?v=TYtlChH2eTQ)
