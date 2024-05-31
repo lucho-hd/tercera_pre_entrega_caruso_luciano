@@ -206,11 +206,11 @@ ul {
   }
 
   .zoom-card {
-      transition: transform 0.3s ease-in-out; /* Agregar transición suave */
+      transition: transform 0.3s ease-in-out;
   }
 
   .zoom-card:hover {
-      transform: scale(1.1); /* Aplicar el efecto de zoom-in al pasar el mouse sobre la tarjeta */
+      transform: scale(1.1);
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
   }
 
@@ -480,6 +480,10 @@ ul {
   vertical-align: middle;
 }
 
+.badge-disponible:hover {
+  background: #67921b;
+} 
+
 .texto-acerca {
   text-wrap: wrap;
   font-size: 25px;
@@ -501,7 +505,9 @@ ul {
 }
 
 .redes:hover {
-  color: #cecaca;
+  background-color: #51515f;
+  color: #ecebec;
+  transform: scale(1.1);
 }
 
 .redes svg {

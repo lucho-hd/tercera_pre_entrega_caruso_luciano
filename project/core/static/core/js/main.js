@@ -13,7 +13,6 @@ window.addEventListener('scroll', function() {
     const textareas = document.querySelectorAll('textarea');
 
     textareas.forEach(textarea => {
-        // Function to adjust the height
         const adjustHeight = (textarea) => {
             textarea.style.height = 'auto';
             textarea.style.height = textarea.scrollHeight + 'px';
@@ -21,7 +20,6 @@ window.addEventListener('scroll', function() {
 
         adjustHeight(textarea);
 
-        // Adjust the height on input
         textarea.addEventListener('input', () => {
             adjustHeight(textarea);
         });
