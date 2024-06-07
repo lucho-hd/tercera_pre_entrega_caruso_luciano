@@ -48,5 +48,5 @@ Formulario para iniciar sesión en el sitio, si las credenciales ingresadas son 
 Formulario para registrarse en el sitio, si los campos solicitados son correctos se lo redireccionará al usuario a la vista de iniciar sesión.
 ![Formulario para crear una nueva cuenta](/capturas_sitio/crear.cuenta.png)
 
-Video de presentación del sitio
+## Video de presentación del sitio
 [![Presentación de la entrega final del curso de CoderHouse](https://img.youtube.com/vi/TYtlChH2eTQ/0.jpg)](https://www.youtube.com/watch?v=TYtlChH2eTQ)
